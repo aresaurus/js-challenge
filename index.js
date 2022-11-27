@@ -32,10 +32,9 @@ async function manageUserInput() {
     let femaleStudents;
     let maleStudents;
 
-    console.log(displayOptions);
-
     do {
         try {
+            displayOptions();
             userInput = await getUserInput();
         } catch(error) {
             console.error('Se ha producido un error.');
