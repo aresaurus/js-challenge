@@ -122,6 +122,7 @@ async function manageUserInput() {
                 break;
             case 13:
                 //  Show the average age of all female students.
+                femaleStudents = students.filter(student => student.gender ==='female');
                 console.log(`La edad media de las alumnas es de ${getAverageAge(femaleStudents)} años.`);
                 break;
             case 14:
