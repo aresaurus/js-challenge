@@ -1,5 +1,5 @@
 import readline from "readline";
-import {students, availableFemaleNames, availableMaleNames, calculateRandomNumber, isNumber, chooseName, displayOptions, getAverageAge} from "../utils.js";
+import {students, availableFemaleNames, availableMaleNames, calculateRandomNumber, isNumber, chooseName, displayOptions, getAverageAge} from "./utils.js";
 
 
 // Code to get user input from the console
@@ -105,6 +105,7 @@ async function manageUserInput() {
                 newStudent.name = chooseName(availableMaleNames, availableFemaleNames);
                 newStudent.gender = availableMaleNames.includes(newStudent.name) ? newStudent.gender = 'male' : newStudent.gender = 'female';
                 students.push(newStudent);
+
                 console.table(students);
                 break;
             case 11:
@@ -131,12 +132,12 @@ async function manageUserInput() {
                 break;
             case 15:
                 // Sort the array alphabetically.
-                let sortedTable = students.sort((a, b) => a.name > b.name ? 1 : -1);
+                let sortedTable = students.sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1);
 
                 console.table(sortedTable);
                 break;
             case 16:
-                // Mostrar por consola el alumno de la clase con las mejores notas.
+                // Show the student with the best grades.
                 break;
             case 17:
                 // Mostrar por consola la nota media más alta de la clase y el nombre del alumno al que pertenece.
