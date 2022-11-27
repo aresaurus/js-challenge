@@ -53,6 +53,7 @@ async function manageUserInput() {
                 break;
             case 3:
                 // Show all student names.
+                console.log('Los nombres de los estudiantes son:');
                 students.map(student => console.log(student.name));
                 break;
             case 4:
@@ -79,13 +80,18 @@ async function manageUserInput() {
             case 7:
                 // Show the number of boys and the number of girls in the group.
                 maleStudents = students.filter(student => student.gender === "male");
+                femaleStudents = students.filter(student => student.gender === "female");
 
                 console.log(`Número de chicos: ${maleStudents.length}\nNúmero de chicas: ${femaleStudents.length}`)
                 break;
             case 8:
                 // Return true if all students are girls, false if they are not.
-                let allFemaleGirls = students.every(student => student.gender === 'female')
-                console.log(`¿En la clase solo hay alumnas?: ${allFemaleGirls}`);
+                if (students.length > 0) {
+                    let allFemaleGirls = students.every(student => student.gender === 'female');
+                    console.log(`¿En la clase solo hay alumnas?: ${allFemaleGirls}`);
+                } else {
+                    console.log('La clase está vacía.')
+                }
                 break;
             case 9:
                 // Show the name of all 20 to 25 yo students
@@ -139,12 +145,18 @@ async function manageUserInput() {
                 break;
             case 16:
                 // Show the student with the best grades.
-                break;
-            case 17:
-                // Mostrar por consola la nota media más alta de la clase y el nombre del alumno al que pertenece.
-                break;
-            case 18:
-                // Añadir un punto extra a cada nota existente de todos los alumnos. Recordad que la nota máxima posible es 10. Si los alumnos aún no tienen registrada ninguna nota, les pondremos un 10.
+                const studentGrades = Array.from(students.map(student => student.examScores));
+                const studentGradesSum = [];
+
+                for (let student = 0; student < studentGrades.length; student++) {
+                    let sum = studentGrades[student].reduce((a, b) => a + b, 0);
+                    studentGradesSum.push(sum);
+                }
+
+                const bestStudentIndex = studentGradesSum.indexOf(Math.max(...studentGradesSum));
+                const bestStudent = students[bestStudentIndex].name;
+                
+                const consoleMsg = students.length > 0 ? console.log(`Las mejores notas de la clase son de ${bestStudent}.`) : console.log(`La lista de alumnos está vacía.`)
                 break;
         }
 
